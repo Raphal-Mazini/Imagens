@@ -1,0 +1,43 @@
+--------------- Seção 1 ---------------------------
+
+	Chamado
+	Data que Recebemos
+	Data que Registramos
+	Data de vencimento
+	Status Vencimento
+ 	Prioridade 
+
+--------------- Seção 2 ---------------------------
+
+	Empresa
+	Nome do Beneficiário
+	Numero Cartão Beneficiário
+	Data Início Tratativa
+	Data Finalização
+	Status da Demanda
+
+--------------- Seção 3 ---------------------------
+
+	Código Prestador
+	Nome do Prestador
+	Data Envio Prestador
+	Data Retorno Prestador
+
+--------------- Seção 4 ---------------------------
+ 
+	Sucursal
+	Estado(UF)
+	Cidade
+	Grupo LC	
+	Data Envio Sucursal
+	Data Retorno Sucursal
+ 	Motivo Acionamento Sucursal
+
+--------------- Seção 5 ---------------------------
+
+	MOTIVO DA RECLAMAÇÃO
+	SUB MOTIVO DA RECLAMAÇÃO
+	ESPECIALIDADE
+	EXAME/PROCEDIMENTO
+
+
