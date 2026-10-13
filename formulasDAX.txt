@@ -1,0 +1,160 @@
+DEFINE
+    MEASURE 'Base Produtividade'[Total de Emails respondidos] = SUM('Base Produtividade'[QTD de E-mails "RESPONDIDOS"])
+    MEASURE 'Base Produtividade'[Produtividade Total] = SUM('Base Produtividade'[QTD de E-mails "RESPONDIDOS"]) + SUM('Base Produtividade'[QTD de E-mails "ENVIADOS"])
+    MEASURE 'Base Produtividade'[Média dia] = AVERAGEX(VALUES('Base Produtividade'[DataTrabalho]),CALCULATE('Base Produtividade'[Produtividade Total]))
+    MEASURE 'Base Produtividade'[Média Mensal] = AVERAGEX(VALUES('Base Produtividade'[MêsAno]),CALCULATE('Base Produtividade'[Produtividade Total]))
+    MEASURE 'Base Produtividade'[Produtividade Semana Atual] = CALCULATE(SUM('Base Produtividade'[QTD de E-mails "RESPONDIDOS"]),'Base Produtividade'[Semana] = MAX('Base Produtividade'[Semana]))
+    MEASURE 'Base Produtividade'[Média Semanal] = AVERAGEX(VALUES('Base Produtividade'[Semana]),CALCULATE('Base Produtividade'[Produtividade Total]))
+    MEASURE 'Base Produtividade'[Total Enviados] = SUM('Base Produtividade'[QTD de E-mails "ENVIADOS"])
+    MEASURE 'Base Produtividade'[% Produtividade] = DIVIDE(
+    'Base Produtividade'[Produtividade Total],
+    CALCULATE(
+        [Produtividade Total],
+        ALLSELECTED('Base Produtividade')
+    )
+)
+    MEASURE 'Produtividade'[% No Prazo] = var noprazo = SUM(Produtividade[Total No Prazo])
+var foradoprazo = SUM(Produtividade[Total Fora do Prazo])
+var total = noprazo + foradoprazo
+RETURN noprazo / total
+    MEASURE 'Produtividade'[% Prod] = DIVIDE(
+    SUM(Produtividade[Total Prod]),
+    CALCULATE(
+        SUM(Produtividade[Total Prod]),
+        ALLSELECTED(Produtividade)
+    )
+)
+    MEASURE 'Produtividade Quadrante'[Produção_quad] = SUM('Produtividade Quadrante'[Produção])
+    MEASURE 'Produtividade Quadrante'[Pontuação] = SUMX(
+        'Meta x Pesos',
+       [Produção_quad] * 'Meta x Pesos'[Peso]
+    )
+    MEASURE 'Produtividade Quadrante'[Dias Prod] = DISTINCTCOUNT('Produtividade Quadrante'[Data])
+    MEASURE 'Produtividade Quadrante'[Meta] = 420
+    MEASURE 'Produtividade Quadrante'[Media Dia] = DIVIDE(
+    [Pontuação],
+    [Dias Prod],
+    0)
+    MEASURE 'Produtividade Quadrante'[Quadrante] = IF([Media Dia] >= [Meta], "Q1",
+IF([Media Dia] >= [Meta] * 0.9, "Q2",
+IF([Media Dia] >= [Meta] * 0.85, "Q3",
+"Q4")))
+    MEASURE 'Produtividade Quadrante'[Cores Quad] = IF('Produtividade Quadrante'[Quadrante] = "Q1","#7ADF84",
+IF('Produtividade Quadrante'[Quadrante] = "Q2","#66B9FF",
+IF('Produtividade Quadrante'[Quadrante] = "Q3","#FBD799",
+"#D58687")))
+    MEASURE 'Produtividade Quadrante'[Média Produção] = 'Produtividade Quadrante'[Produção_quad] / [Dias Prod]
+    MEASURE 'Produtividade Quadrante'[Média dia Q1] = AVERAGEX(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q1"
+    ),
+    [Media Dia]
+)
+    MEASURE 'Produtividade Quadrante'[Média dia Q2] = AVERAGEX(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q2"
+    ),
+    [Media Dia]
+)
+    MEASURE 'Produtividade Quadrante'[Média dia Q3] = AVERAGEX(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q3"
+    ),
+    [Media Dia]
+)
+    MEASURE 'Produtividade Quadrante'[Média dia Q4] = AVERAGEX(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q4"
+    ),
+    [Media Dia]
+)
+    MEASURE 'Produtividade Quadrante'[Qtd Analista Q1] = COUNTROWS(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q1"
+    )
+)
+    MEASURE 'Produtividade Quadrante'[Qtd Analista Q2] = COUNTROWS(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q2"
+    )
+)
+    MEASURE 'Produtividade Quadrante'[Qtd Analista Q3] = COUNTROWS(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q3"
+    )
+)
+    MEASURE 'Produtividade Quadrante'[Qtd Analista Q4] = COUNTROWS(
+    FILTER(
+        VALUES('Produtividade Quadrante'[Nome]),
+        [Quadrante] = "Q4"
+    )
+)
+    MEASURE 'Produtividade Quadrante'[Média geral quad] = AVERAGEX(
+    VALUES('Produtividade Quadrante'[Nome]),
+    [Media Dia]
+)
+    MEASURE 'Produtividade Quadrante'[Cores gráfico] = IF([Média geral quad] >= 420, "#7ADF84",
+IF([Média geral quad] >= 420 * 0.9, "#66B9FF",
+IF([Média geral quad] >= 420 * 0.85, "#FBD799",
+"#D58687")))
+    MEASURE 'Produtividade Quadrante'[% Q1 dia] = [Qtd Analista Q1] / DISTINCTCOUNT('Produtividade Quadrante'[Nome])
+    MEASURE 'Produtividade Quadrante'[% Q2 dia] = [Qtd Analista Q2] / DISTINCTCOUNT('Produtividade Quadrante'[Nome])
+    MEASURE 'Produtividade Quadrante'[% Q3 dia] = [Qtd Analista Q3] / DISTINCTCOUNT('Produtividade Quadrante'[Nome])
+    MEASURE 'Produtividade Quadrante'[% Q4 dia] = [Qtd Analista Q4] / DISTINCTCOUNT('Produtividade Quadrante'[Nome])
+    MEASURE 'Produtividade Quadrante'[PeríodoSemana] = DATEVALUE(CALCULATE(VALUES('Calendario produtividade'[Data]),
+TOPN(1,'Calendario produtividade','Calendario produtividade'[Data],ASC)))
+
+& " - " & 
+
+DATEVALUE(CALCULATE(VALUES('Calendario produtividade'[Data]),
+TOPN(1,'Calendario produtividade','Calendario produtividade'[Data],DESC)))
+    MEASURE 'Produtividade Quadrante'[% Meta] = DIVIDE(
+    [Media Dia],
+    [Meta],
+    0
+)
+
+EVALUATE
+    SUMMARIZECOLUMNS(
+        "Total de Emails respondidos", [Total de Emails respondidos],
+        "Produtividade Total", [Produtividade Total],
+        "Média dia", [Média dia],
+        "Média Mensal", [Média Mensal],
+        "Produtividade Semana Atual", [Produtividade Semana Atual],
+        "Média Semanal", [Média Semanal],
+        "Total Enviados", [Total Enviados],
+        "% Produtividade", [% Produtividade],
+        "% No Prazo", [% No Prazo],
+        "% Prod", [% Prod],
+        "Produção_quad", [Produção_quad],
+        "Pontuação", [Pontuação],
+        "Dias Prod", [Dias Prod],
+        "Meta", [Meta],
+        "Media Dia", [Media Dia],
+        "Quadrante", [Quadrante],
+        "Cores Quad", [Cores Quad],
+        "Média Produção", [Média Produção],
+        "Média dia Q1", [Média dia Q1],
+        "Média dia Q2", [Média dia Q2],
+        "Média dia Q3", [Média dia Q3],
+        "Média dia Q4", [Média dia Q4],
+        "Qtd Analista Q1", [Qtd Analista Q1],
+        "Qtd Analista Q2", [Qtd Analista Q2],
+        "Qtd Analista Q3", [Qtd Analista Q3],
+        "Qtd Analista Q4", [Qtd Analista Q4],
+        "Média geral quad", [Média geral quad],
+        "Cores gráfico", [Cores gráfico],
+        "% Q1 dia", [% Q1 dia],
+        "% Q2 dia", [% Q2 dia],
+        "% Q3 dia", [% Q3 dia],
+        "% Q4 dia", [% Q4 dia],
+        "PeríodoSemana", [PeríodoSemana],
+        "% Meta", [% Meta]
+    )
