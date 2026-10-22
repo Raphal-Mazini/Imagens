@@ -1,6 +1,6 @@
-SLA Tecnica Calc =
-VAR ini = 'Gestão de Insumos (Main)'[Data_Solicitacao]
-VAR fim = 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item]
+SLA Analitica Calc =
+VAR ini = 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item]
+VAR fim = 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Analitica_Item]
 RETURN
 IF(
     NOT ISBLANK(ini) && NOT ISBLANK(fim) && fim >= ini,
