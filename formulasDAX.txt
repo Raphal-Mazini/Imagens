@@ -1,8 +1,4 @@
-SLA Analitica Calc =
-VAR ini = 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item]
-VAR fim = 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Analitica_Item]
-RETURN
-IF(
-    NOT ISBLANK(ini) && NOT ISBLANK(fim) && fim >= ini,
-    MAX(CALCULATE(SUM('Calendar'[Dia ùtil]), DATESBETWEEN('Calendar'[Date], ini, fim)) - 1, 0)
-)
+SLA Orizon Calc =
+VAR tec = 'Gestão de Insumos (Main)'[SLA Tecnica Calc]
+VAR ana = 'Gestão de Insumos (Main)'[SLA Analitica Calc]
+RETURN IF(NOT ISBLANK(tec) && NOT ISBLANK(ana), tec + ana)
