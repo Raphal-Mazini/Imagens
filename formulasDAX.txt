@@ -1,20 +1,2 @@
-EVALUATE
-VAR t = 'Gestão de Insumos (Main)'
-RETURN
-ROW(
-    "Itens", COUNTROWS(t),
-    "Tecnica com valor", COUNT('Gestão de Insumos (Main)'[SLA Tecnica Calc]),
-    "Media Tecnica", AVERAGE('Gestão de Insumos (Main)'[SLA Tecnica Calc]),
-    "Analitica com valor", COUNT('Gestão de Insumos (Main)'[SLA Analitica Calc]),
-    "Media Analitica", AVERAGE('Gestão de Insumos (Main)'[SLA Analitica Calc]),
-    "Orizon com valor", COUNT('Gestão de Insumos (Main)'[SLA Orizon Calc]),
-    "Media Orizon", AVERAGE('Gestão de Insumos (Main)'[SLA Orizon Calc]),
-    "Orizon acima de 60 dias", COUNTROWS(FILTER(t, 'Gestão de Insumos (Main)'[SLA Orizon Calc] > 60)),
-    "Tecnica com data invertida", COUNTROWS(FILTER(t,
-        NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item])
-        && 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item] < 'Gestão de Insumos (Main)'[Data_Solicitacao])),
-    "Analitica com data invertida", COUNTROWS(FILTER(t,
-        NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Analitica_Item])
-        && NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item])
-        && 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Analitica_Item] < 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item]))
-)
+[Itens]	[Tecnica com valor]	[Media Tecnica]	[Analitica com valor]	[Media Analitica]	[Orizon com valor]	[Media Orizon]	[Orizon acima de 60 dias]	[Tecnica com data invertida]	[Analitica com data invertida]
+754984	574479	2.6583164919866524	573666	0.4708454048174373	573666	3.1285939902312494	1959		
