@@ -1,2 +1,7 @@
-[Itens]	[Tecnica com valor]	[Media Tecnica]	[Analitica com valor]	[Media Analitica]	[Orizon com valor]	[Media Orizon]	[Orizon acima de 60 dias]	[Tecnica com data invertida]	[Analitica com data invertida]
-754984	574479	2.6583164919866524	573666	0.4708454048174373	573666	3.1285939902312494	1959		
+EVALUATE
+TOPN(
+    15,
+    FILTER('Gestão de Insumos (Main)', 'Gestão de Insumos (Main)'[SLA Orizon Calc] > 60),
+    'Gestão de Insumos (Main)'[SLA Orizon Calc], DESC
+)
+ORDER BY 'Gestão de Insumos (Main)'[SLA Orizon Calc] DESC
