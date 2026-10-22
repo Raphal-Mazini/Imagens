@@ -1,2 +1,8 @@
-[Itens concluidos]	[Media Enfermeira pronta]	[Media Tecnica calculada]	[Media Analitica pronta]	[Media Analitica calculada]	[Media Orizon pronta]	[Orizon diferente da soma]
-573666	0.5236	2.6551373098632305	0.6608	0.4655478972084802	0.6712215818960858	58328
+SLA Tecnica Calc =
+VAR ini = 'Gestão de Insumos (Main)'[Data_Solicitacao]
+VAR fim = 'Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item]
+RETURN
+IF(
+    NOT ISBLANK(ini) && NOT ISBLANK(fim) && fim >= ini,
+    MAX(CALCULATE(SUM('Calendar'[Dia ùtil]), DATESBETWEEN('Calendar'[Date], ini, fim)) - 1, 0)
+)
