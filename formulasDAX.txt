@@ -1,2 +1,15 @@
-[Itens]	[Media Enfermeira pronta]	[Media Tecnica calculada]	[Media Analitica pronta]	[Media Analitica calculada]	[Media SLA_Orizon pronta]	[Enfermeira preenchida]	[Enfermeira igual Tecnica]	[Orizon preenchida]	[Orizon igual Enf + Analitica]
-754984	0.3998	134.44655648331621	0.6608	391.22309479406186	0.5120134996238331	754984	232177	754984	696656
+EVALUATE
+VAR t = FILTER('Gestão de Insumos (Main)',
+    NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Tecnica_Item])
+    && NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Qualificacao_Analitica_Item]))
+RETURN
+ROW(
+    "Itens concluidos", COUNTROWS(t),
+    "Media Enfermeira pronta", AVERAGEX(t, 'Gestão de Insumos (Main)'[SLA_da_enfermeira]),
+    "Media Tecnica calculada", AVERAGEX(t, 'Gestão de Insumos (Main)'[SLA QUALIFICAÇÃO Tec ITEM]),
+    "Media Analitica pronta", AVERAGEX(t, 'Gestão de Insumos (Main)'[Sla_Qualificacao_Analitica]),
+    "Media Analitica calculada", AVERAGEX(t, 'Gestão de Insumos (Main)'[SLA QUALIFICAÇÃO Analitc ITEM]),
+    "Media Orizon pronta", AVERAGEX(t, 'Gestão de Insumos (Main)'[SLA_Orizon]),
+    "Orizon diferente da soma", COUNTROWS(FILTER(t,
+        ABS('Gestão de Insumos (Main)'[SLA_Orizon] - ('Gestão de Insumos (Main)'[SLA_da_enfermeira] + 'Gestão de Insumos (Main)'[Sla_Qualificacao_Analitica])) >= 0.01))
+)
