@@ -1,6 +1,3 @@
-SLA Total =
-IF(
-    NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Item]),
-    CALCULATE(SUM('Calendar'[Dia ùtil]),
-    DATESBETWEEN('Calendar'[Date],'Gestão de Insumos (Main)'[Data_Solicitacao],'Gestão de Insumos (Main)'[Data_Conclusao_Item]))
-)
+SLA Orizon =
+AVERAGE('Gestão de Insumos (Main)'[SLA_da_enfermeira])
+    + AVERAGE('Gestão de Insumos (Main)'[Sla_Qualificacao_Analitica])
