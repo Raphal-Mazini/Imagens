@@ -1,8 +1,247 @@
-EVALUATE
-SELECTCOLUMNS(
-    INFO.VIEW.MEASURES(),
-    "Tabela", [Table],
-    "Medida", [Name],
-    "Formula", [Expression]
+[Tabela]	[Medida]	[Formula]
+Gestão de Insumos (Main)	- Top Anvisa	CALCULATE(MAX('Gestão de Insumos (Main)'[Anvisa]),
+
+
+     TOPN(
+            1, 
+            SUMMARIZE(
+                    'Gestão de Insumos (Main)', 
+                    'Gestão de Insumos (Main)'[Anvisa], 
+                    "TotalSales", COUNT('Gestão de Insumos (Main)'[Anvisa])
+            ),
+            [TotalSales], DESC
+        )
 )
-ORDER BY [Tabela], [Medida]
+ 
+Gestão de Insumos (Main)	% no Prazo Orizon	
+VAR total =
+    CALCULATE(
+        COUNTROWS('Gestão de Insumos (Main)'),
+        REMOVEFILTERS('Calendar'),
+        TREATAS(VALUES('Calendar'[Date]), 'Gestão de Insumos (Main)'[Data_Conclusao_Item])
+    )
+VAR noprazo =
+    CALCULATE(
+        COUNTROWS('Gestão de Insumos (Main)'),
+        REMOVEFILTERS('Calendar'),
+        TREATAS(VALUES('Calendar'[Date]), 'Gestão de Insumos (Main)'[Data_Conclusao_Item]),
+        'Gestão de Insumos (Main)'[Status Prazo Orizon] = "No Prazo"
+    )
+RETURN DIVIDE(noprazo, total)
+Gestão de Insumos (Main)	% Saving	
+DIVIDE([Saving],SUM('Gestão de Insumos (Main)'[Valor_Proposto_Prestador]))
+Gestão de Insumos (Main)	Count_Protocolo_item	count('Gestão de Insumos (Main)'[Protocolo_Item])
+Gestão de Insumos (Main)	Itens Negociação Operadora	
+CALCULATE([Count_Protocolo_item], 'Gestão de Insumos (Main)'[Status_Item] in {"Aguardando Negociação","Negociação"},'Gestão de Insumos (Main)'[perfil_pendente] <> "Prestador")
+Gestão de Insumos (Main)	Itens Negociação Prestador	
+CALCULATE([Count_Protocolo_item], 'Gestão de Insumos (Main)'[Status_Item] in {"Aguardando Negociação","Negociação"},'Gestão de Insumos (Main)'[perfil_pendente] = "Prestador")
+Gestão de Insumos (Main)	Saving	
+SUM('Gestão de Insumos (Main)'[Valor_Proposto_Prestador]) - SUM('Gestão de Insumos (Main)'[Valor_Final_Negociado])
+Gestão de Insumos (Main)	Saving Final Negociado	[ValorFinalNegociado] - [ValorPropPrestador]
+Gestão de Insumos (Main)	Saving Final Negociado x Sugerido Orizon	[ValorFinalNegociado] - [ValorSugeridoOrizon]
+Gestão de Insumos (Main)	Saving sugerido Orizon	[ValorSugeridoOrizon] - [ValorPropPrestador]
+Gestão de Insumos (Main)	SLA Orizon	
+AVERAGE('Gestão de Insumos (Main)'[SLA_da_enfermeira])
+    + AVERAGE('Gestão de Insumos (Main)'[Sla_Qualificacao_Analitica])
+Gestão de Insumos (Main)	Total Itens Negociação	
+CALCULATE([Count_Protocolo_item],'Gestão de Insumos (Main)'[Status_Item] in {"Aguardando Negociação", "Negociação"})
+Gestão de Insumos (Main)	ValorFinalNegociado	CALCULATE(SUM('Gestão de Insumos (Main)'[Valor_Final_Negociado]),DISTINCT('Gestão de Insumos (Main)'[Protocolo_Item]))
+Gestão de Insumos (Main)	ValorPropPrestador	CALCULATE(SUM('Gestão de Insumos (Main)'[Valor_Proposto_Prestador]),DISTINCT('Gestão de Insumos (Main)'[Protocolo_Item]))
+Gestão de Insumos (Main)	ValorSugeridoOrizon	CALCULATE(SUM('Gestão de Insumos (Main)'[Valor_Sugerido_Orizon]),DISTINCT('Gestão de Insumos (Main)'[Protocolo_Item]))
+Itens devolvidos	Count_devolvidos	
+COUNT('Itens devolvidos'[id_transicao_status_solicitacao_item])
+
+Itens devolvidos	Média dia Devolvidos	COUNT('Itens devolvidos'[data_final_transicao_status])/ DISTINCTCOUNT('Itens devolvidos'[data_final_transicao_status])
+Tabela Produção	% Q1 dia	[Qtd Colaborador Q1] / DISTINCTCOUNT('Excel Usuários x Nomes'[Colaborador])
+Tabela Produção	% Q2 dia	[Qtd Colaborador Q2] / DISTINCTCOUNT('Excel Usuários x Nomes'[Colaborador])
+Tabela Produção	% Q3 dia	[Qtd Colaborador Q3] / DISTINCTCOUNT('Excel Usuários x Nomes'[Colaborador])
+Tabela Produção	% Q4 dia	[Qtd Colaborador Q4] / DISTINCTCOUNT('Excel Usuários x Nomes'[Colaborador])
+Tabela Produção	Cores gráfico	
+
+IF([Média geral quad] >= [Meta], "#7ADF84",
+IF([Média geral quad] >= [Meta] * 0.9, "#66B9FF",
+IF([Média geral quad] >= [Meta] * 0.85, "#FBD799",
+"#D58687")))
+Tabela Produção	Cores Quad	
+IF([Quadrante] = "Q1","#7ADF84",
+IF([Quadrante] = "Q2","#66B9FF",
+IF([Quadrante] = "Q3","#FBD799",
+"#D58687")))
+Tabela Produção	Count_Protocolo	COUNT('Tabela Produção'[Protocolo])
+Tabela Produção	Dias Prod	
+
+COUNTROWS(
+    DISTINCT(
+        UNION(
+            SELECTCOLUMNS(
+               'Tabela Produção',
+                "Data", 'Tabela Produção'[Data]
+            ),
+            SELECTCOLUMNS(
+                'Itens devolvidos',
+                "Data", 'Itens devolvidos'[data_inicio_transicao_status]
+            )
+        )
+    )
+)
+Tabela Produção	Dispersão Quadrante	
+
+VAR q1 = [% Q1 dia]
+VAR q4 = [% Q4 dia]
+RETURN IF(q4>0, DIVIDE(q1,q4)-1)
+Tabela Produção	Farol_condicional	
+VAR UsuarioAtual = SELECTEDVALUE('Tabela Produção'[Usuario])
+
+VAR UsuarioPermitido =
+    UsuarioAtual IN {"bocarvalho", "ecosta", "jalbino"}
+
+VAR ProducaoTecnica =
+    IF(
+        UsuarioPermitido,
+        CALCULATE([Media Total Produção]),
+        BLANK()
+    )
+
+RETURN
+IF(
+    UsuarioPermitido,
+    IF(
+        ProducaoTecnica >= 365, 1,
+        IF(
+            ProducaoTecnica >= 300, 2,
+            IF(ProducaoTecnica >= 0, 3, BLANK())
+        )
+    ),
+    BLANK()
+)
+Tabela Produção	FiltroColaborador	
+
+IF(
+    CALCULATE(
+        COUNTROWS('Tabela Produção'),
+        TREATAS(
+            VALUES('Excel Usuários x Nomes'[Usuário]),
+            'Tabela Produção'[Usuario]
+        )
+    ) > 0,
+    1,
+    BLANK()
+)
+Tabela Produção	Media Devolvidos	
+
+AVERAGEX(
+    VALUES('Calendar'[Date]),
+    [Count_Devolvidos]
+)
+Tabela Produção	Media dia	
+DIVIDE(
+    [Pontuação],
+    [Dias Prod],
+    0
+)
+Tabela Produção	Média dia	COUNT('Tabela Produção'[Data])/ DISTINCTCOUNT('Tabela Produção'[Data])
+Tabela Produção	Média dia Q1	
+AVERAGEX(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q1"
+    ),
+    [Media Dia]
+)
+Tabela Produção	Média dia Q2	
+AVERAGEX(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q2"
+    ),
+    [Media Dia]
+)
+Tabela Produção	Média dia Q3	
+AVERAGEX(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q3"
+    ),
+    [Media Dia]
+)
+Tabela Produção	Média dia Q4	
+AVERAGEX(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q4"
+    ),
+    [Media Dia]
+)
+Tabela Produção	Média geral quad	
+
+AVERAGEX(
+    VALUES('Excel Usuários x Nomes'[Colaborador]),
+    [Media Dia]
+)
+Tabela Produção	Media Produção	
+DIVIDE(
+    [Total Produção],
+    [Dias Prod],
+    0
+)
+Tabela Produção	Media Qualificado	
+
+AVERAGEX(
+    VALUES('Calendar'[Date]),
+    [Count_Protocolo]
+)
+Tabela Produção	Media Total Produção	
+AVERAGEX(
+    VALUES('Calendar'[Date]),
+    [Total Produção]
+)
+Tabela Produção	Meta	420
+Tabela Produção	PeríodoSemana	
+DATEVALUE(CALCULATE(VALUES('Calendar'[Date]),
+TOPN(1,'Calendar','Calendar'[Date],ASC)))
+
+& " - " & 
+
+DATEVALUE(CALCULATE(VALUES('Calendar'[Date]),
+TOPN(1,'Calendar','Calendar'[Date],DESC)))
+Tabela Produção	Pontuação	
+    SUMX(
+        'Meta x Pesos',
+       [Total Produção] * 'Meta x Pesos'[Peso]
+    )
+Tabela Produção	Qtd Colaborador Q1	
+COUNTROWS(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q1"
+    )
+)
+Tabela Produção	Qtd Colaborador Q2	
+COUNTROWS(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q2"
+    )
+)
+Tabela Produção	Qtd Colaborador Q3	
+COUNTROWS(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q3"
+    )
+)
+Tabela Produção	Qtd Colaborador Q4	
+COUNTROWS(
+    FILTER(
+        VALUES('Excel Usuários x Nomes'[Colaborador]),
+        [Quadrante] = "Q4"
+    )
+)
+Tabela Produção	Quadrante	
+
+IF([Media Dia] >= [Meta], "Q1",
+IF([Media Dia] >= [Meta] * 0.9, "Q2",
+IF([Media Dia] >= [Meta] * 0.85, "Q3",
+"Q4")))
+Tabela Produção	Quantidade de processos	COUNT('Tabela Produção'[Protocolo])
+Tabela Produção	Total Produção	[Count_Protocolo] + [Count_devolvidos]
