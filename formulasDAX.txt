@@ -1,12 +1,2 @@
-EVALUATE
-VAR periodo = FILTER('Gestão de Insumos (Main)',
-    'Gestão de Insumos (Main)'[Data_Solicitacao] >= DATE(2026, 9, 24)
-    && 'Gestão de Insumos (Main)'[Data_Solicitacao] <= DATE(2026, 10, 22))
-VAR concluidos = FILTER(periodo, NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Item]))
-RETURN
-ROW(
-    "Itens no periodo", COUNTROWS(periodo),
-    "Itens nao concluidos", COUNTROWS(periodo) - COUNTROWS(concluidos),
-    "Media SLA Total atual", AVERAGEX(periodo, 'Gestão de Insumos (Main)'[SLA Total]),
-    "Media SLA Total so concluidos", AVERAGEX(concluidos, 'Gestão de Insumos (Main)'[SLA Total])
-)
+[Itens no periodo]	[Itens nao concluidos]	[Media SLA Total atual]	[Media SLA Total so concluidos]
+11591	9008	10.2323	7.6864
