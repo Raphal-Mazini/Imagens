@@ -1,3 +1,8 @@
-SLA Orizon =
-AVERAGE('Gestão de Insumos (Main)'[SLA_da_enfermeira])
-    + AVERAGE('Gestão de Insumos (Main)'[Sla_Qualificacao_Analitica])
+EVALUATE
+SELECTCOLUMNS(
+    INFO.VIEW.MEASURES(),
+    "Tabela", [Table],
+    "Medida", [Name],
+    "Formula", [Expression]
+)
+ORDER BY [Tabela], [Medida]
