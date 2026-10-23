@@ -1,9 +1,6 @@
-EVALUATE
-UNION(
-    SELECTCOLUMNS(
-        FILTER(INFO.VIEW.COLUMNS(), CONTAINSSTRING([Expression], "SLA Total")),
-        "Tipo", "Coluna", "Tabela", [Table], "Nome", [Name]),
-    SELECTCOLUMNS(
-        FILTER(INFO.VIEW.MEASURES(), CONTAINSSTRING([Expression], "SLA Total")),
-        "Tipo", "Medida", "Tabela", [Table], "Nome", [Name])
+SLA Total =
+IF(
+    NOT ISBLANK('Gestão de Insumos (Main)'[Data_Conclusao_Item]),
+    CALCULATE(SUM('Calendar'[Dia ùtil]),
+    DATESBETWEEN('Calendar'[Date],'Gestão de Insumos (Main)'[Data_Solicitacao],'Gestão de Insumos (Main)'[Data_Conclusao_Item]))
 )
