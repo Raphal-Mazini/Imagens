@@ -1,37 +1,49 @@
-01	Volume Mensal	Quantidade de Itens por dia	Volume de itens recebidos	Contagem de itens pela data de solicitação	Mostra a demanda de entrada. Picos indicam dias de maior volume recebido
-02	Volume Mensal	Itens por Status	Situação atual dos itens	Contagem de itens em cada status	Mostra em que etapa do fluxo os itens estão
-03	Volume Mensal	Estoque	Itens aguardando ou em qualificação	Contagem de itens com status Novo, Aguardando Qualificação Técnica, Qualificação Técnica, Aguardando Qualificação Analítica e Qualificação Analítica	Quanto maior, mais itens acumulados na fila de análise
-04	Volume Mensal	Itens em Negociação	Itens em fase de negociação	Contagem de itens com status Aguardando Negociação ou Negociação	Volume total em negociação, dividido entre pendentes com a Operadora e com o Prestador
-05	Equivalência x Sem Equivalência	% Com Equivalência	Itens com item equivalente cadastrado	Itens com equivalência ÷ total de itens	Quanto maior, mais itens têm referência para comparar preço
-06	Equivalência x Sem Equivalência	% Com Valor em Equivalência	Itens com valor de referência por equivalência	Itens com valor ÷ total de itens	Indica quantos itens podem ter o preço comparado por equivalência
-07	Equivalência x Sem Equivalência	% Com Similaridade	Itens com item similar cadastrado	Itens com similaridade ÷ total de itens	Quanto maior, mais itens têm um similar como referência
-08	Equivalência x Sem Equivalência	% Similares com Valor	Itens similares com valor de referência	Itens similares com valor ÷ total de itens	Indica quantos itens podem ter o preço comparado por similaridade
-09	Produtividade Diária/Mensal	Produtividade Técnica	Itens concluídos na qualificação técnica	Contagem de itens pela data de conclusão técnica, por dia ou por mês	Volume entregue pela equipe técnica no período
-10	Produtividade Diária/Mensal	Produtividade Analítica	Itens concluídos na qualificação analítica	Contagem de itens pela data de conclusão analítica, por dia ou por mês	Volume entregue pela equipe analítica no período
-11	SLA	SLA Total	Tempo do processo completo	Média de dias úteis entre a solicitação e a conclusão do item, considerando só itens concluídos	Tempo médio que um item leva do recebimento até o fim. Quanto menor, melhor
-12	SLA	SLA Enfermeira	Tempo da qualificação técnica	Média dos dias úteis da etapa	Meta: 4 dias úteis. Acima da meta indica atraso na etapa
-13	SLA	SLA Analista	Tempo da qualificação analítica	Média dos dias úteis da etapa	Meta: 2 dias úteis
-14	SLA	SLA Negociação	Tempo da negociação	Média dos dias úteis da etapa	Meta: 4 dias úteis
-15	SLA	SLA Implantação	Tempo da implantação	Média dos dias úteis da etapa	Meta: 4 dias úteis
-16	SLA	SLA Orizon	Tempo sob responsabilidade da Orizon	SLA Enfermeira + SLA Analista	Tempo médio que o item fica nas etapas da Orizon. Quanto menor, melhor
-17	% no Prazo Orizon	% no Prazo	Itens concluídos dentro do prazo	Itens concluídos no prazo ÷ total de itens concluídos no período	Quanto mais perto de 100%, melhor o cumprimento do prazo
-18	Savings	Valor Proposto Prestador	Valor pedido pelos prestadores	Soma dos valores propostos	Base de comparação para a economia
-19	Savings	Valor Sugerido Orizon	Valor sugerido pela Orizon	Soma dos valores sugeridos	Referência de preço indicada pela Orizon
-20	Savings	Valor Final Negociado	Valor acordado	Soma dos valores finais negociados	Valor efetivamente aceito
-21	Savings	Saving	Economia obtida	Valor Proposto - Valor Final Negociado	Quanto se deixou de pagar em relação ao pedido
-22	Savings	% Saving	Economia relativa	Saving ÷ Valor Proposto	Percentual economizado sobre o valor pedido
-23	Savings	Saving Sugerido Orizon	Distância entre a sugestão e o pedido	Valor Sugerido - Valor Proposto	Valor negativo indica sugestão abaixo do pedido
-24	Savings	Saving Final Negociado	Distância entre o acordado e o pedido	Valor Final - Valor Proposto	Valor negativo indica economia
-25	Savings	Saving Final x Sugerido Orizon	Distância entre o acordado e a sugestão	Valor Final - Valor Sugerido	Positivo: acordo acima da sugestão. Negativo: abaixo
-26	Prestadores	Itens por Prestador	Volume enviado por prestador	Contagem de itens	Identifica os prestadores com mais solicitações
-27	Prestadores	Valor Proposto por Prestador	Valor pedido por prestador	Soma dos valores propostos	Identifica os prestadores com maior valor pedido
-28	Prestadores	Top Anvisa	Produto mais solicitado pelo prestador	Registro Anvisa com mais ocorrências	Indica o item mais frequente de cada prestador
-29	Produtividade Individual	Qualificado	Itens concluídos pelo colaborador	Contagem pela data de conclusão da etapa (técnica ou analítica)	Volume entregue pelo colaborador
-30	Produtividade Individual	Devolvido	Itens devolvidos pelo colaborador	Contagem pela data da devolução	Volume de itens que voltaram para correção
-31	Produtividade Individual	Total Produção	Produção total	Qualificado + Devolvido	Produção completa do colaborador no período
-32	Produtividade Individual	Média Diária	Ritmo de produção	Total Produção ÷ dias com produção	Produção média por dia trabalhado
-33	Quadrante	Pontuação	Produção ponderada	Soma da produção × peso de cada etapa e tipo de item	Considera que itens e etapas têm complexidades diferentes
-34	Quadrante	Média Dia	Pontuação diária do colaborador	Pontuação ÷ dias com produção	Comparada com a meta diária de 420 pontos
-35	Quadrante	Quadrante	Faixa de desempenho	Q1: a partir de 100% da meta; Q2: 90% a 99%; Q3: 85% a 89%; Q4: abaixo de 85%	Q1 é o melhor desempenho, Q4 o mais baixo
-36	Quadrante	% de Colaboradores por Quadrante	Distribuição da equipe	Colaboradores no quadrante ÷ total de colaboradores	Mostra como a equipe se divide entre as faixas
-37	Quadrante	Dispersão Quadrante	Concentração no topo em relação à base	(% Q1 ÷ % Q4) - 1	Quanto maior, mais colaboradores no Q1 em relação ao Q4
+Dash de produtividade individual
+
+Vincular ticket
+
+
+Criar
+
+Checklist
+
+Add Tempo to plan and track time
+
+Informações principais
+
+Michelle Vieira Gianini
+criou esta solicitação
+via
+Portal
+Ver solicitação no portal
+Descrição
+
+Por favor criar um dash com visão individual de cada colaborador sendo as métricas:
+
+ 
+
+Produtividade: será contabilizado a quantidade de solicitações concluídas de acordo com a data de conclusão dos sharepoints. Regra: quantificar a coluna title e a data de conclusão, por colaborador.
+
+SLA: será contabilizado dias úteis entre a data de criado x data de conclusão dos sharepoints. Regra: quantificar em dias úteis o SLA de análise de cada colaborador.
+
+ 
+
+Acho válido incluir o total de solicitações do mês, para que eles possam entender quanto foi analisado por eles.
+
+ 
+
+Temos 2 sharepoints para o ACS e 2 sharepoint para a negociação:
+
+ 
+
+ACS: Regulação Médica - Autorização - Análise do Completa da solicitação - Todos os Itens + Regulação Médica - Autorização - ACS - Fluxo 2.0 - Todos os Itens
+
+ 
+
+Negociação: Regulação Médica - Autorização - Negociação de itens - ACS - Todos os Itens + Regulação Médica - Autorização - Negociação ACS - Fluxo 2.0 - Todos os Itens
+
+ 
+
+Operação (Sel)
+
+Esteira Ágil
