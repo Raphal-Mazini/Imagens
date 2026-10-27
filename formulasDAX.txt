@@ -37,3 +37,102 @@ Erro
 
 Erro de fonte de dados: DataSource.NotFound: Excel Workbook: The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine. The 64-bit version of the Access Database Engine OLEDB provider may be required to read this type of file. To download the client software, visit the following site: https://go.microsoft.com/fwlink/?LinkID=285987.. Microsoft.Data.Mashup.ErrorCode = 10478. . The exception was raised by the IDbCommand interface.
 
+
+
+
+{
+    "timeStart": "2026-10-27T15:41:20.9740000Z",
+    "timeEnd": "2026-10-27T15:41:36.7840000Z",
+    "durationMs": 15810,
+    "externalQueryExecutionTimeMs": 53942,
+    "vertipaqJobCpuTimeMs": 16,
+    "mEngineCpuTimeMs": 36141,
+    "queryProcessingCpuTimeMs": 281,
+    "totalCpuTimeMs": 41641,
+    "executionDelayMs": 6,
+    "approximatePeakMemConsumptionKB": 1843220,
+    "mEnginePeakMemoryKB": 1666880,
+    "tabularConnectionTimeoutMs": 17999000,
+    "commandType": "Batch",
+    "discoverType": 136,
+    "queryDialect": 4,
+    "refreshParallelism": 6,
+    "vertipaqTotalRows": 44237,
+    "intendedUsage": 2,
+    "managedTaskCpuTimeMs": 172,
+    "errorCount": 16
+}
+
+
+
+{
+    "timeStart": "2026-10-27T15:42:37.5480000Z",
+    "timeEnd": "2026-10-27T15:42:58.0400000Z",
+    "durationMs": 20492,
+    "externalQueryExecutionTimeMs": 82900,
+    "vertipaqJobCpuTimeMs": 891,
+    "mEngineCpuTimeMs": 65625,
+    "queryProcessingCpuTimeMs": 250,
+    "totalCpuTimeMs": 74125,
+    "executionDelayMs": 63,
+    "approximatePeakMemConsumptionKB": 1049224,
+    "mEnginePeakMemoryKB": 847048,
+    "tabularConnectionTimeoutMs": 17999000,
+    "commandType": "Batch",
+    "discoverType": 136,
+    "queryDialect": 4,
+    "refreshParallelism": 6,
+    "vertipaqTotalRows": 919650,
+    "intendedUsage": 2,
+    "managedTaskCpuTimeMs": 219,
+    "errorCount": 10
+}
+
+{
+    "timeStart": "2026-10-27T15:44:58.6520000Z",
+    "timeEnd": "2026-10-27T15:45:08.7280000Z",
+    "durationMs": 10076,
+    "externalQueryExecutionTimeMs": 35151,
+    "vertipaqJobCpuTimeMs": 156,
+    "mEngineCpuTimeMs": 25516,
+    "queryProcessingCpuTimeMs": 250,
+    "totalCpuTimeMs": 30719,
+    "executionDelayMs": 6,
+    "approximatePeakMemConsumptionKB": 1192855,
+    "mEnginePeakMemoryKB": 1033024,
+    "tabularConnectionTimeoutMs": 17999000,
+    "commandType": "Batch",
+    "discoverType": 136,
+    "queryDialect": 4,
+    "refreshParallelism": 6,
+    "vertipaqTotalRows": 42434,
+    "intendedUsage": 2,
+    "managedTaskCpuTimeMs": 63,
+    "errorCount": 14
+}
+
+
+{
+    "timeStart": "2026-10-27T15:50:09.3990000Z",
+    "timeEnd": "2026-10-27T15:50:20.3180000Z",
+    "durationMs": 10919,
+    "externalQueryExecutionTimeMs": 45654,
+    "vertipaqJobCpuTimeMs": 156,
+    "managedTaskCpuTimeMs": 156,
+    "queryProcessingCpuTimeMs": 281,
+    "totalCpuTimeMs": 40703,
+    "executionDelayMs": 8,
+    "approximatePeakMemConsumptionKB": 994265,
+    "tabularConnectionTimeoutMs": 17999000,
+    "commandType": "Batch",
+    "discoverType": 136,
+    "queryDialect": 4,
+    "refreshParallelism": 6,
+    "vertipaqTotalRows": 14145,
+    "intendedUsage": 2,
+    "mEngineCpuTimeMs": 35656,
+    "mEnginePeakMemoryKB": 890100,
+    "errorCount": 16
+}
+
+
