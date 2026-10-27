@@ -1,4 +1,5 @@
-let
+Resolva o erro para ver os resultados
+Query (2, 5) The syntax for 'Classificar' is incorrect. (let
     Classificar = (bin as binary) as text =>
         let
             b = Binary.ToList(Binary.Range(bin, 0, 4))
@@ -40,4 +41,4 @@ let
 
     Resultado = Table.Combine({Arquivos, Pastas})
 in
-    Resultado
+    Resultado).
