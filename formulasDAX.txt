@@ -1,14 +1,39 @@
-Erro de fonte de dados:	We are unable to process this request right now because a capacity admin has configured the workspace of this semantic model to reject new requests. A capacity admin may decide to block new requests to drain the queue or to provide additional capacity resources to a critical workload. Please contact your capacity administrator to review the Capacity Workspace Settings and unblock the workspace. See https://go.microsoft.com/fwlink/?linkid=2324925 to learn more.
+
+Erro de fonte de dados:	DataSource.NotFound: Excel Workbook: The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine. The 64-bit version of the Access Database Engine OLEDB provider may be required to read this type of file. To download the client software, visit the following site: https://go.microsoft.com/fwlink/?LinkID=285987.. Microsoft.Data.Mashup.ErrorCode = 10478. . The exception was raised by the IDbCommand interface.
 Cluster URI:	WABI-BRAZIL-SOUTH-B-PRIMARY-redirect.analysis.windows.net
-ID da atividade:	b8a67421-e27a-4c9b-8cd7-804ee76814a4
-Solicitar ID:	4bb6ef38-c3ce-439f-ab77-ca1177e8df25
-Hora:	2026-10-27 11:38:45Z
+ID da atividade:	8117b543-0c1e-464d-bdea-8625deae6257
+Solicitar ID:	105b78b6-cd8d-496c-915c-10ce4afbb99f
+Hora:	2026-10-27 15:50:22Z
 Detalhes	
 #	Tipo	Iniciar	Terminar	Duração	Status	Detalhes
-1	Dados	27/10/2026, 08:38:43	27/10/2026, 08:38:45	2s	Falhou	(Mostrar)
+1	Dados	27/10/2026, 12:41:18	27/10/2026, 12:41:37	18s	Falhou	(Mostrar)
+2	Dados	27/10/2026, 12:42:37	27/10/2026, 12:42:58	20s	Falhou	(Mostrar)
+3	Dados	27/10/2026, 12:44:58	27/10/2026, 12:45:08	10s	Falhou	(Mostrar)
+4	Dados	27/10/2026, 12:50:08	27/10/2026, 12:50:22	13s	Falhou	(Mostrar)
+
+
+Erro
+
+Erro de fonte de dados: DataSource.NotFound: Excel Workbook: The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine. The 64-bit version of the Access Database Engine OLEDB provider may be required to read this type of file. To download the client software, visit the following site: https://go.microsoft.com/fwlink/?LinkID=285987.. Microsoft.Data.Mashup.ErrorCode = 10478. . The exception was raised by the IDbCommand interface.
+
 
 
 
 Erro
 
-Erro de fonte de dados: We are unable to process this request right now because a capacity admin has configured the workspace of this semantic model to reject new requests. A capacity admin may decide to block new requests to drain the queue or to provide additional capacity resources to a critical workload. Please contact your capacity administrator to review the Capacity Workspace Settings and unblock the workspace. See https://go.microsoft.com/fwlink/?linkid=2324925 to learn more.
+Erro de fonte de dados: DataSource.NotFound: Excel Workbook: The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine. The 64-bit version of the Access Database Engine OLEDB provider may be required to read this type of file. To download the client software, visit the following site: https://go.microsoft.com/fwlink/?LinkID=285987.. Microsoft.Data.Mashup.ErrorCode = 10478. . The exception was raised by the IDbCommand interface.
+
+
+
+
+Erro
+
+Erro de fonte de dados: DataSource.NotFound: Excel Workbook: The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine. The 64-bit version of the Access Database Engine OLEDB provider may be required to read this type of file. To download the client software, visit the following site: https://go.microsoft.com/fwlink/?LinkID=285987.. Microsoft.Data.Mashup.ErrorCode = 10478. . The exception was raised by the IDbCommand interface.
+
+
+
+
+Erro
+
+Erro de fonte de dados: DataSource.NotFound: Excel Workbook: The 'Microsoft.ACE.OLEDB.12.0' provider is not registered on the local machine. The 64-bit version of the Access Database Engine OLEDB provider may be required to read this type of file. To download the client software, visit the following site: https://go.microsoft.com/fwlink/?LinkID=285987.. Microsoft.Data.Mashup.ErrorCode = 10478. . The exception was raised by the IDbCommand interface.
+
