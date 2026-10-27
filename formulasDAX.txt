@@ -1,49 +1,14 @@
-Dash de produtividade individual
+Erro de fonte de dados:	We are unable to process this request right now because a capacity admin has configured the workspace of this semantic model to reject new requests. A capacity admin may decide to block new requests to drain the queue or to provide additional capacity resources to a critical workload. Please contact your capacity administrator to review the Capacity Workspace Settings and unblock the workspace. See https://go.microsoft.com/fwlink/?linkid=2324925 to learn more.
+Cluster URI:	WABI-BRAZIL-SOUTH-B-PRIMARY-redirect.analysis.windows.net
+ID da atividade:	b8a67421-e27a-4c9b-8cd7-804ee76814a4
+Solicitar ID:	4bb6ef38-c3ce-439f-ab77-ca1177e8df25
+Hora:	2026-10-27 11:38:45Z
+Detalhes	
+#	Tipo	Iniciar	Terminar	Duração	Status	Detalhes
+1	Dados	27/10/2026, 08:38:43	27/10/2026, 08:38:45	2s	Falhou	(Mostrar)
 
-Vincular ticket
 
 
-Criar
+Erro
 
-Checklist
-
-Add Tempo to plan and track time
-
-Informações principais
-
-Michelle Vieira Gianini
-criou esta solicitação
-via
-Portal
-Ver solicitação no portal
-Descrição
-
-Por favor criar um dash com visão individual de cada colaborador sendo as métricas:
-
- 
-
-Produtividade: será contabilizado a quantidade de solicitações concluídas de acordo com a data de conclusão dos sharepoints. Regra: quantificar a coluna title e a data de conclusão, por colaborador.
-
-SLA: será contabilizado dias úteis entre a data de criado x data de conclusão dos sharepoints. Regra: quantificar em dias úteis o SLA de análise de cada colaborador.
-
- 
-
-Acho válido incluir o total de solicitações do mês, para que eles possam entender quanto foi analisado por eles.
-
- 
-
-Temos 2 sharepoints para o ACS e 2 sharepoint para a negociação:
-
- 
-
-ACS: Regulação Médica - Autorização - Análise do Completa da solicitação - Todos os Itens + Regulação Médica - Autorização - ACS - Fluxo 2.0 - Todos os Itens
-
- 
-
-Negociação: Regulação Médica - Autorização - Negociação de itens - ACS - Todos os Itens + Regulação Médica - Autorização - Negociação ACS - Fluxo 2.0 - Todos os Itens
-
- 
-
-Operação (Sel)
-
-Esteira Ágil
+Erro de fonte de dados: We are unable to process this request right now because a capacity admin has configured the workspace of this semantic model to reject new requests. A capacity admin may decide to block new requests to drain the queue or to provide additional capacity resources to a critical workload. Please contact your capacity administrator to review the Capacity Workspace Settings and unblock the workspace. See https://go.microsoft.com/fwlink/?linkid=2324925 to learn more.
